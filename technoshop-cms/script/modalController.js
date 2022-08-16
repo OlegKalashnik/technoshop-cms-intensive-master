@@ -1,4 +1,4 @@
-import { textForms } from './elems.js';
+import { form } from './elems.js';
 import { hidePreview } from './previewController.js';
 
 const openModal = (modal, classOpen) => {
@@ -7,13 +7,8 @@ const openModal = (modal, classOpen) => {
 
 const closeModal = (modal, classOpen) => {
   modal.classList.remove(classOpen);
-};
-
-const cleanForms = () => {
+  form.reset();
   hidePreview();
-  textForms.forEach((element) => {
-    element.value = '';
-  });
 };
 
 export const modalController = ({ modal, modalBtn, classOpen, classClose }) => {
@@ -23,7 +18,6 @@ export const modalController = ({ modal, modalBtn, classOpen, classClose }) => {
   modal.addEventListener('click', ({ target }) => {
     if (target === modal || target.classList.contains(classClose)) {
       closeModal(modal, classOpen);
-      cleanForms();
     }
   });
 };
