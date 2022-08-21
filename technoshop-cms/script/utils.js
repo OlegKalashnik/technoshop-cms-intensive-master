@@ -1,15 +1,23 @@
 export const toBase64 = (file) => {
   return new Promise((resolve, reject) => {
-    const reader = new FileReader()
+    const reader = new FileReader();
 
     reader.addEventListener('loadend', () => {
-      resolve(reader.result)
-    })
+      resolve(reader.result);
+    });
 
     reader.addEventListener('error', (err) => {
-      reject(err)
-    })
+      reject(err);
+    });
 
-    reader.readAsDataURL(file)
-  })
-}
+    reader.readAsDataURL(file);
+  });
+};
+
+export const currencyFormatRUB = (number) => {
+  return new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency: 'RUB',
+    maximumFractionDigits: 0,
+  }).format(number);
+};
